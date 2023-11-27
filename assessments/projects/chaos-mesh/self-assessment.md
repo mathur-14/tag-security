@@ -130,7 +130,9 @@ Resource Quotas and Limits: Setting appropriate resource quotas and limits in Ku
 
 ## Project compliance
 
-None
+* Chaos Mesh follows Kubernetes best practices and compliance measures, such as Role-Based Access Control (RBAC). The roles determine which users can create, configure, and run experiments.
+* In order to communicate between the Chaos Controller Manager and Chaos Demon, Chaos Mesh uses TLS to encrypt all intermediate communication to safeguard against man in the middle attacks.
+* Tenent Isolation can separate each tenant and their Kubernetes resources into their own namespaces so that users of these tenant services have appropriate access that also only for their respective namespaces
 
 ## Secure development practices
 
