@@ -105,7 +105,7 @@ This document serves to provide Chaos Mesh users with an initial understanding o
 This document provides the CNCF TAG-Security with an initial understanding of Chaos Mesh to assist in a joint-assessment, necessary for projects under incubation.  Taken together, this document and the joint-assessment serve as a cornerstone for if and when Chaos Mesh seeks graduation and is preparing for a security audit.
 
 <details>
-<summary>Longhorn Lightweight Threat Model</summary>
+<summary>Chaos Mesh Lightweight Threat Model</summary>
 
 ### Overview
 
@@ -193,6 +193,14 @@ Chaos Mesh is designed to be used in a Kubernetes environment, and it provides v
 | Networking                     | Data in transit can be intercepted or spoofed to exploit the system                       |Define explicit NetworkPolicy resources, default deny traffic where possible, implement port filtering and monitoring | [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)|
 | Multi-tenancy Isolation        | Data or permissions accessible in one tenent can be accessed or manipulated from another  |Strictly separate namespaces, Manage non-namespace objects, | [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)|
 | Authorization                  | Users can perform restricted actions                                                      |Implement RBAC, adopt principle of least access      | [Kubernetes Authorization](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) |
+
+### Recommendations:
+- Avoid using depreciated library versions and services.
+- All sensitive data must encripted and usage of secret manager is much much more secure for both transport and application layer.
+- Periodically assess the issues and vulnerabiity from logs and contributers.
+
+### Conclusion:
+- Chaos Mesh is a powerful tool for Chaos Engineering, but it's important to consider potential threats and implement appropriate controls. However, to further analyse complex threats, advanced threat modeling tools must be used.
 
 </details>
 
