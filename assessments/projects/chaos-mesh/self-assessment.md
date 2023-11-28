@@ -69,6 +69,8 @@ Chaos engineering involves intentionally introducing controlled and measured dis
 - Chaos Controller Manager: Responsible for scheduling and managing Chaos experiments. It includes multiple Controllers handling different Chaos experiment types and workflows.
 - Chaos Daemon: The executive component running in DaemonSet mode. It carries out specific fault injections by interfering with network devices, file systems, and kernels within the target Pod Namespace.
 
+![Chaos Mesh Architecture](chaos-architecture.png)
+
 ### Actions
 User input and observation:
 - User (Actor) Interaction: Initiating operations and interactions via the Chaos Dashboard or YAML configuration file.
@@ -96,19 +98,11 @@ Injection of specific node faults:
 
 ## Self-assessment use
 
-This self-assessment is created by the [project] team to perform an internal analysis of the
-project's security.  It is not intended to provide a security audit of [project], or
-function as an independent assessment or attestation of [project]'s security health.
+This self-assessment is created by the Chaos Mesh team to perform an internal analysis of the project's security.  It is not intended to provide a security audit of Chaos Mesh, or function as an independent assessment or attestation of Chaos Mesh's security health.
 
-This document serves to provide [project] users with an initial understanding of
-[project]'s security, where to find existing security documentation, [project] plans for
-security, and general overview of [project] security practices, both for development of
-[project] as well as security of [project].
+This document serves to provide Chaos Mesh users with an initial understanding of Chaos Mesh's security, where to find existing security documentation, Chaos Mesh plans for security, and general overview of Chaos Mesh security practices, both for development of Chaos Mesh as well as security of Chaos Mesh.
 
-This document provides the CNCF TAG-Security with an initial understanding of [project]
-to assist in a joint-assessment, necessary for projects under incubation.  Taken
-together, this document and the joint-assessment serve as a cornerstone for if and when
-[project] seeks graduation and is preparing for a security audit.
+This document provides the CNCF TAG-Security with an initial understanding of Chaos Mesh to assist in a joint-assessment, necessary for projects under incubation.  Taken together, this document and the joint-assessment serve as a cornerstone for if and when Chaos Mesh seeks graduation and is preparing for a security audit.
 
 ## Security functions and features
 
@@ -130,7 +124,7 @@ Resource Quotas and Limits: Setting appropriate resource quotas and limits in Ku
 
 ## Project compliance
 
-* Chaos Mesh follows Kubernetes best practices and compliance measures, such as Role-Based Access Control (RBAC). The roles determine which users can create, configure, and run experiments.
+* Chaos Mesh follows Kubernetes best practices and compliance measures, such as Role-Based Access Control [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). The roles determine which users can create, configure, and run experiments.
 * In order to communicate between the Chaos Controller Manager and Chaos Demon, Chaos Mesh uses TLS to encrypt all intermediate communication to safeguard against man in the middle attacks.
 * Tenent Isolation can separate each tenant and their Kubernetes resources into their own namespaces so that users of these tenant services have appropriate access that also only for their respective namespaces
 
@@ -150,21 +144,21 @@ Resource Quotas and Limits: Setting appropriate resource quotas and limits in Ku
   describe in corresponding section.
 
   * Internal:
-    Slack: https://cloud-native.slack.com/archives/C0193VAV272
-    GitHub Issues: https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md
-    GitHub Discussion: https://github.com/chaos-mesh/chaos-mesh/discussions/new
-    Email: https://github.com/chaos-mesh/chaos-mesh/blob/master/MAINTAINERS.md
+    - Slack: https://cloud-native.slack.com/archives/C0193VAV272
+    - GitHub Issues: https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md
+    - GitHub Discussion: https://github.com/chaos-mesh/chaos-mesh/discussions/new
+    - Email: https://github.com/chaos-mesh/chaos-mesh/blob/master/MAINTAINERS.md
 
   * Inbound:
-    Slack: https://cloud-native.slack.com/archives/C0193VAV272
-    GitHub Issues: https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md
-    GitHub Discussion: https://github.com/chaos-mesh/chaos-mesh/discussions/new
+    - Slack: https://cloud-native.slack.com/archives/C0193VAV272
+    - GitHub Issues: https://github.com/chaos-mesh/chaos-mesh/issues/new?assignees=&labels=&template=question.md
+    - GitHub Discussion: https://github.com/chaos-mesh/chaos-mesh/discussions/new
 
   * Outbound:
-    Chaos Mesh Blog: https://chaos-mesh.org/blog
-    Twitter: https://twitter.com/chaos_mesh
-    Community Meeting: https://community.cncf.io/chaos-mesh-community/
-    Development Meeting: https://community.cncf.io/chaos-mesh-community/
+    - Chaos Mesh Blog: https://chaos-mesh.org/blog
+    - Twitter: https://twitter.com/chaos_mesh
+    - Community Meeting: https://community.cncf.io/chaos-mesh-community/
+    - Development Meeting: https://community.cncf.io/chaos-mesh-community/
 
 * Ecosystem. 
 
