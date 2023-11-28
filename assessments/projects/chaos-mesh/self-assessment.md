@@ -180,15 +180,27 @@ Vulnerabilities discovered for the first time will be disclosed in accordance wi
 
 ## Appendix
 
-* Known Issues Over Time. List or summarize statistics of past vulnerabilities
-  with links. If none have been reported, provide data, if any, about your track
-record in catching issues in code review or automated testing.
-* [CII Best Practices](https://www.coreinfrastructure.org/programs/best-practices-program/).
-  Best Practices. A brief discussion of where the project is at
-  with respect to CII best practices and what it would need to
-  achieve the badge.
-* Case Studies. Provide context for reviewers by detailing 2-3 scenarios of
-  real-world use cases.
-* Related Projects / Vendors. Reflect on times prospective users have asked
-  about the differences between your project and projectX. Reviewers will have
-the same question.
+Known Issues Over Time
+* The maintainers of Chaos Mesh have a record of all their issues on [this page](https://github.com/chaos-mesh/chaos-mesh/issues). Any issues including but not limited to security vulnerabilities discovered in the past are documented here. Some repetitive issues do arise, but these are related to the testing of pod killing in certain applications
+* The repository has a [security policy](https://github.com/chaos-mesh/chaos-mesh/security/policy) that outlines their ability to provide security updates to the two most recent minor versions. Secondly, their security advisories page exists, and has a no previous security threats sign on it. 
+* That being said a broad understanding from reviewers about chaos mesh's security [is](https://www.googlecloudcommunity.com/gc/Cloud-Product-Articles/Comparing-CNCF-Chaos-Engineering-Tools/ta-p/500693) that it uses some Linux utilities to implement the low-level chaos types. Similarly, it needs to use the Docker API in the host machine. Therefore, the daemon Pods (deployed as DaemonSet) will run as privileged containers, and will mount the ``/var/run/docker.sock`` socket file. The controller manager Pod will require permissions to manage MutatingWebhookConfiguration, besides some other expected role-based access control (RBAC) permissions, if the sidecar injection is enabled.
+
+CII Best Practices (based on: [link](https://www.bestpractices.dev/en/criteria/0))
+* Chaos Mesh is actually doing very well according to the criteria set by the CII best practices handbook. They have all the required criteria in the Basics, Change Control, Reporting, and Quality guidelines. Finally an extra note can be added about the Analysis criteria as the dynamic testing of Chaos Mesh on the TiDb cloud is a very good success notch on their belt. 
+* As for the Security field not much can be said, as it is not known if there is a security engineer on board to perform said secure developments as well as design against Man In The Middle (MITM) Attacks. Secondly, the good cryptographic practices clause also cannot be commented upon as the usage of the such is unknown. 
+
+Case Studies
+* In terms of Case Studies, Chaos Mesh has glowing and amazing tesimonials. It has a dedicated [adopters](https://github.com/chaos-mesh/chaos-mesh/blob/master/ADOPTERS.md) page covering 40 major adopters encompassing domains such as automobiles, gaming as well as social media giants like ByteDance. 
+* Further notable examples like TenCent also come to mind, as mentioned in their [Kubecon China Presentation](https://www.youtube.com/watch?v=3zY6plaH6m0), how Oscar(the proprietary cloud infrastructure of Tencent) has Chaos Mesh under the hood as part of its chaos injection layer. 
+
+Related Projects / Vendors
+* Chaos Mesh is often compared to other CNCF projects or cloud-native storage solutions such as Litmus, Chaos Toolkit, Gremlin and sometimes Pumba.
+* Gremlin is most recently being compared in this [blog](https://dev.to/indika_wimalasuriya/gremlin-vs-chaos-mesh-the-ultimate-chaos-engineering-showdown-2mb) with it being described as expensive, slightly rigid and having a not so nice UI. That being said Chaos mesh sometimes has comparitively less number of features, and slightly complicated to setup with users' existing systems.
+  
+* When compared with Chaos Toolkit another [blog](https://blog.container-solutions.com/comparing-chaos-engineering-tools) has to say, Similar security constraints characterize all these tools, as they employ comparable capabilities and methods for experiment execution. Notably, Chaos Toolkit and Litmus provide users the option to craft more fine-grained experiments, setting them apart. On the other hand, Pumba and Chaos Mesh act as more opinionated executors, resulting in less flexibility regarding security.
+
+* Crucially, the required security constraints for an experiment are determined by the actions performed during the experiment. For example, experiments involving network latency might demand elevated privileges, while less intrusive actions, such as killing a pod, have fewer security implications. Hence, even though the tools themselves can be considered secure, users must ensure that each experiment is well-designed from a security standpoint. 
+
+Future of Chaos Mesh
+* The future of this repo is extremely bright, as evidenced by their growing community, the stars on github as well as the [package health review of chaos-mesh](https://snyk.io/advisor/python/chaos-mesh) which hints at their regular maintenance and the overall health of the package. 
+* Also mentioned in the Kubecon presentation was the fact that the next areas to be worked on are: Observability, Multi Cluster Chaos, Codebase Refining and a Building a solution like ChAP in conjunction with other OSS projects.
