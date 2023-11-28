@@ -186,6 +186,15 @@ Chaos Mesh is designed to be used in a Kubernetes environment, and it provides v
 - **Controls**: Enforce least privilege access controls, limiting access to necessary functionalities. Implement comprehensive logging and monitoring to detect and respond to suspicious behavior promptly. Conduct regular user training on security protocols and best practices.
 
 </details>
+#### Potential Controls Summary
+| Threat                         | Description                                                                               | Controls                                                                         | References  |
+|--------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|-------------|
+| Deployment architecture        | Development or testing environments and tools used to build and deploy may be vulnerable  |Ensure that images are free of vulnerabilities, ensure that only authorized images are used in your environment, limit direct access to Kubernetes nodes|[Deployment Security Best Practices](https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/)|
+| Networking                     | Data in transit can be intercepted or spoofed to exploit the system                       |Define explicit NetworkPolicy resources, default deny traffic where possible, implement port filtering and monitoring | [Kubernetes Network Policies] (https://kubernetes.io/docs/concepts/services-networking/network-policies/)|
+| Multi-tenancy Isolation        | Data or permissions accessible in one tenent can be accessed or manipulated from another  |Strictly separate namespaces, Manage non-namespace objects, | [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)|
+| Authorization                  | Users can perform restricted actions                                                      |Implement RBAC, adopt principle of least access      | [Kubernetes Authorization](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) |
+
+>>>>>>> Stashed changes
 
 ## Security functions and features
 
