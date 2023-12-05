@@ -29,6 +29,7 @@ Express Learning course provided by Linux Foundation Training & Certification:
   - [Project compliance](#project-compliance)
   - [Secure development practices](#secure-development-practices)
   - [Security issue resolution](#security-issue-resolution)
+  - [Action Items](#action-items)
   - [Appendix](#appendix)
 
 ## Metadata
@@ -40,7 +41,7 @@ A table at the top for quick reference information, later used for indexing.
 | Software          | https://github.com/chaos-mesh/chaos-mesh                                                                                          |
 | Security Provider | No, Chaos Mesh offers various types of fault simulation and has an enormous capability to orchestrate fault scenarios.            |
 | Languages         | Go, Typescript, Javascript, Shell                                                                                                 |
-| SBOM              | `https://github.com/<username>/<repository>/releases/tag/<release-tag>/chaos-mesh-${{ needs.build-specific-architecture.outputs.image_tag }}-sbom.spdx` |
+| SBOM              | `TBA` |
 |                   |                                                                                                                                   |
 
 ### Security links
@@ -137,7 +138,7 @@ Chaos Mesh is an open-source cloud-native Chaos Engineering platform that offers
 #### Deployment Architecture
 - **Control**: Managed through Kubernetes with defined storage classes and volume claims. Chaos Mesh uses Kubernetes for its deployment architecture. It also provides the ability to control the scope of Chaos experiments to specific namespaces
 - **Data**: Persistent volume data.
-- **Threats**: Misconfiguration leading to unauthorised access.
+- **Threats**: Misconfiguration leading to unauthorized access.
 
 #### Networking
 - **Control**: Chaos Mesh can simulate network-related faults, such as delay and packet loss. Internal Kubernetes networking with CNI, optional TLS encryption for external communication.
@@ -154,7 +155,7 @@ Chaos Mesh is an open-source cloud-native Chaos Engineering platform that offers
 - **Data**: public/private keys, user credentials.
 - **Threats**: Exposure/alter of sensitive data.
 
-#### Authentication and Authorisation
+#### Authentication and Authorization
 - **Control**: RBAC Authorization to manage permissions.
 - **Data**: apiGroups of chaos-mesh.org
 - **Threats**: Unauthorized activities occurring within the storage system/networks.
@@ -167,7 +168,7 @@ Chaos Mesh is an open-source cloud-native Chaos Engineering platform that offers
 #### Security Tests
 - **Control**: Integration tests and testing on test environment with changes.
 - **Data**: Code and dependencies.
-- **Threats**: vulnurabilities, wrong test cases, less coverage leading to unexpected results.
+- **Threats**: vulnerabilities, wrong test cases, less coverage leading to unexpected results.
 
 ### Threat Scenarios
 Chaos Mesh is designed to be used in a Kubernetes environment, and it provides various types of fault simulations. Therefore, potential threats could include:
@@ -191,16 +192,16 @@ Chaos Mesh is designed to be used in a Kubernetes environment, and it provides v
 | ------------------------------ | ----------------------------------------------------------------------------------------- |--------------------------------------------------------------------------------- | ----------- |
 | Deployment architecture        | Development or testing environments and tools used to build and deploy may be vulnerable  |Ensure that images are free of vulnerabilities, ensure that only authorized images are used in your environment, limit direct access to Kubernetes nodes|[Deployment Security Best Practices](https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/)|
 | Networking                     | Data in transit can be intercepted or spoofed to exploit the system                       |Define explicit NetworkPolicy resources, default deny traffic where possible, implement port filtering and monitoring | [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)|
-| Multi-tenancy Isolation        | Data or permissions accessible in one tenent can be accessed or manipulated from another  |Strictly separate namespaces, Manage non-namespace objects, | [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)|
+| Multi-tenancy Isolation        | Data or permissions accessible in one tenant can be accessed or manipulated from another  |Strictly separate namespaces, Manage non-namespace objects, | [Kubernetes Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)|
 | Authorization                  | Users can perform restricted actions                                                      |Implement RBAC, adopt principle of least access      | [Kubernetes Authorization](https://kubernetes.io/docs/reference/access-authn-authz/authorization/) |
 
 ### Recommendations:
 - Avoid using depreciated library versions and services.
-- All sensitive data must encripted and usage of secret manager is much much more secure for both transport and application layer.
-- Periodically assess the issues and vulnerabiity from logs and contributers.
+- All sensitive data must encrypted and usage of secret manager is much much more secure for both transport and application layer.
+- Periodically assess the issues and vulnerability from logs and contributors.
 
 ### Conclusion:
-- Chaos Mesh is a powerful tool for Chaos Engineering, but it's important to consider potential threats and implement appropriate controls. However, to further analyse complex threats, advanced threat modeling tools must be used.
+- Chaos Mesh is a powerful tool for Chaos Engineering, but it's important to consider potential threats and implement appropriate controls. However, to further analyze complex threats, advanced threat modeling tools must be used.
 
 </details>
 
@@ -218,19 +219,19 @@ Pod Security Policies: In Kubernetes environments, pod security policies define 
 
 Chaos Mesh Experiment Configurations: The configuration of chaos experiments themselves, including defining scope, duration, and intensity, is crucial. Proper configuration ensures that these experiments do not unintentionally compromise system stability or security.
 
-Network Security Configurations: These include settings related to firewalls, network segmentation, and access controls. Proper configuration can prevent unauthorized access and limit the scope of potential network-based attacks.
+Network Security Configurations: These include settings related to firewalls, network segmentation, and access controls. Proper configuration can prevent unauthorized access such as Role-Based Access Control [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). and limit the scope of potential network-based attacks. The roles determine which users can create, configure, and run experiments.
 
-Resource Quotas and Limits: Setting appropriate resource quotas and limits in Kubernetes helps prevent resource exhaustion attacks, where an attacker could attempt to overwhelm the system by consuming excessive resources.
+Resource Quotas and Limits: Setting appropriate resource quotas and limits in Kubernetes helps prevent resource exhaustion attacks, where an attacker could attempt to overwhelm the system by consuming excessive resources. Tenant Isolation can separate each tenant and their Kubernetes resources into their own namespaces so that users of these tenant services have appropriate access that also only for their respective namespaces
 
 ## Project compliance
 
-* Chaos Mesh follows Kubernetes best practices and compliance measures, such as Role-Based Access Control [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). The roles determine which users can create, configure, and run experiments.
-* In order to communicate between the Chaos Controller Manager and Chaos Demon, Chaos Mesh uses TLS to encrypt all intermediate communication to safeguard against man in the middle attacks.
-* Tenent Isolation can separate each tenant and their Kubernetes resources into their own namespaces so that users of these tenant services have appropriate access that also only for their respective namespaces
+* In the most recent security self assessment of Chaos Mesh, there is a notable absence of documented adherence to recognized security standards, including but not limited to PCI-DSS, COBIT, ISO, GDPR, etc. Ongoing initiatives are directed towards assessing and aligning Chaos Mesh with these standards, emphasizing a commitment to industry best practices in security and privacy. This adherence is discussed under CII Best Practices under [Appendix](#appendix).
+* Although not meeting any particular standards, Chaos Mesh relies on TLS encryption to ensure robustness and security to safeguard against man in the middle attacks.
+
 
 ## Secure development practices
 
-* Development Pipeline.  
+* Development Pipeline.
 
 1. Clone the repo to remote device and make a change
 2. Unit test
@@ -278,6 +279,12 @@ Vulnerabilities discovered for the first time will be disclosed in accordance wi
 4. Fork the temporary private repository on Github, and collaborate to fix the vulnerability.
 5. After the fixed code is merged into all supported versions, the vulnerability will be publicly posted in the GitHub Advisory Database.
 
+## Action Items
+
+- [ ] Acquire SBOM from the maintainers of Chaos Mesh
+- [ ] Connect and Discuss the code design and vulnerabilities with the maintainers (appointment of 7th December)
+- [ ] Create a pull request for the maintainers of Chaos Mesh
+
 ## Appendix
 
 Known Issues Over Time
@@ -290,12 +297,12 @@ CII Best Practices (based on: [link](https://www.bestpractices.dev/en/criteria/0
 * As for the Security field not much can be said, as it is not known if there is a security engineer on board to perform said secure developments as well as design against Man In The Middle (MITM) Attacks. Secondly, the good cryptographic practices clause also cannot be commented upon as the usage of the such is unknown. 
 
 Case Studies
-* In terms of Case Studies, Chaos Mesh has glowing and amazing tesimonials. It has a dedicated [adopters](https://github.com/chaos-mesh/chaos-mesh/blob/master/ADOPTERS.md) page covering 40 major adopters encompassing domains such as automobiles, gaming as well as social media giants like ByteDance. 
+* In terms of Case Studies, Chaos Mesh has glowing and amazing testimonials. It has a dedicated [adopters](https://github.com/chaos-mesh/chaos-mesh/blob/master/ADOPTERS.md) page covering 40 major adopters encompassing domains such as automobiles, gaming as well as social media giants like ByteDance. 
 * Further notable examples like TenCent also come to mind, as mentioned in their [Kubecon China Presentation](https://www.youtube.com/watch?v=3zY6plaH6m0), how Oscar(the proprietary cloud infrastructure of Tencent) has Chaos Mesh under the hood as part of its chaos injection layer. 
 
 Related Projects / Vendors
 * Chaos Mesh is often compared to other CNCF projects or cloud-native storage solutions such as Litmus, Chaos Toolkit, Gremlin and sometimes Pumba.
-* Gremlin is most recently being compared in this [blog](https://dev.to/indika_wimalasuriya/gremlin-vs-chaos-mesh-the-ultimate-chaos-engineering-showdown-2mb) with it being described as expensive, slightly rigid and having a not so nice UI. That being said Chaos mesh sometimes has comparitively less number of features, and slightly complicated to setup with users' existing systems.
+* Gremlin is most recently being compared in this [blog](https://dev.to/indika_wimalasuriya/gremlin-vs-chaos-mesh-the-ultimate-chaos-engineering-showdown-2mb) with it being described as expensive, slightly rigid and having a not so nice UI. That being said Chaos mesh sometimes has comparatively less number of features, and slightly complicated to setup with users' existing systems.
   
 * When compared with Chaos Toolkit another [blog](https://blog.container-solutions.com/comparing-chaos-engineering-tools) has to say, Similar security constraints characterize all these tools, as they employ comparable capabilities and methods for experiment execution. Notably, Chaos Toolkit and Litmus provide users the option to craft more fine-grained experiments, setting them apart. On the other hand, Pumba and Chaos Mesh act as more opinionated executors, resulting in less flexibility regarding security.
 
