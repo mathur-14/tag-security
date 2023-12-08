@@ -41,7 +41,7 @@ A table at the top for quick reference information, later used for indexing.
 | Software          | https://github.com/chaos-mesh/chaos-mesh                                                                                          |
 | Security Provider | No, Chaos Mesh offers various types of fault simulation and has an enormous capability to orchestrate fault scenarios.            |
 | Languages         | Go, Typescript, Javascript, Shell                                                                                                 |
-| SBOM              | `TBA` |
+| SBOM              | `https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.6.2` -> Assets -> File: `chaos-mesh-v2.6.2-sbom.spdx` |
 |                   |                                                                                                                                   |
 
 ### Security links
