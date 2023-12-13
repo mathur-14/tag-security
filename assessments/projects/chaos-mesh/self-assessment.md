@@ -76,6 +76,16 @@ Monitor resource changes, schedule Workflow, and carry out Chaos experiments:
 Injection of specific node faults:
 - Chaos Daemon (Actor): Accepting commands from Chaos Controller Manager to execute fault injections.
   - Specific Fault Injections: Hacking into the target Pod's Namespace to perform fault injections based on defined Chaos resources.
+  - Chaos Resource Changes: Triggering changes in Chaos resources (e.g., creating or modifying NetworkChaos resources).
+
+Monitor resource changes, schedule Workflow, and carry out Chaos experiments:
+- Chaos Controller Manager (Actor): Accepting events from the Kubernetes API Server.
+  - Workflow Scheduling: Scheduling and managing Chaos experiments and workflows.
+  - Chaos Experiment Execution: Triggering specific fault injections, such as Pod failures, network issues, CPU/memory race simulations, etc.
+
+Injection of specific node faults:
+- Chaos Daemon (Actor): Accepting commands from Chaos Controller Manager to execute fault injections.
+  - Specific Fault Injections: Hacking into the target Pod's Namespace to perform fault injections based on defined Chaos resources.
 
 ### Goals
 - Fault Injection for Resilience Testing: Chaos Mesh aims to enable controlled and orchestrated fault injections within cloud-native environments to improve system resilience. This includes simulating various fault scenarios such as network failures, application faults, and platform failures.
