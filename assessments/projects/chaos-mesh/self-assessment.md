@@ -36,16 +36,16 @@ The Self-assessment is the initial document for Chaos Mesh to begin thinking abo
 
 ### Security links
 
-| Doc                                                                 | URL                                                                                                                                                                                                      |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manage user permissions                                             | https://chaos-mesh.org/docs/manage-user-permissions/                                                                                                                                                     |
-| Configure namespace for Chaos Experiments                           | https://chaos-mesh.org/docs/configure-enabled-namespace/                                                                                                                                                 |
-| GCP OAuth Authentication                                            | https://chaos-mesh.org/docs/gcp-authentication/                                                                                                                                                          |
-| Chaos Mesh manages permissions using the native RBAC feature in K8s | https://kubernetes.io/docs/reference/access-authn-authz/rbac/                                                                                                                                            |
-| Vulnerability Disclosure Policy                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#disclosure-policy                                                                                                                       |
-| Vulnerability Reporting Process                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#reporting-a-vulnerability                                                                                                               |
-| Default Configuration                                               |  https://chaos-mesh.org/docs/configure-development-environment/#configuration-requirements     <br>    (Note: [Go version Vulnerability](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.5.2) ) |
-| Versions Supported by Security Updates                              | [Supported Versions](https://github.com/chaos-mesh/chaos-mesh/security#supported-versions             )   <br>                [All Versions](https://chaos-mesh.org/supported-releases/)                 |
+| Doc                                                                 | URL                                                                                                                                                                                                     |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manage user permissions                                             | https://chaos-mesh.org/docs/manage-user-permissions/                                                                                                                                                    |
+| Configure namespace for Chaos Experiments                           | https://chaos-mesh.org/docs/configure-enabled-namespace/                                                                                                                                                |
+| GCP OAuth Authentication                                            | https://chaos-mesh.org/docs/gcp-authentication/                                                                                                                                                         |
+| Chaos Mesh manages permissions using the native RBAC feature in K8s | https://kubernetes.io/docs/reference/access-authn-authz/rbac/                                                                                                                                           |
+| Vulnerability Disclosure Policy                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#disclosure-policy                                                                                                                      |
+| Vulnerability Reporting Process                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#reporting-a-vulnerability                                                                                                              |
+| Default Configuration                                               | https://chaos-mesh.org/docs/configure-development-environment/#configuration-requirements     <br>    (Note: [Go version Vulnerability](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.5.2) ) |
+| Versions Supported by Security Updates                              | [Supported Versions](https://github.com/chaos-mesh/chaos-mesh/security#supported-versions             )   <br>                [All Versions](https://chaos-mesh.org/supported-releases/)                |
 
 ## Overview
 
@@ -185,8 +185,6 @@ Vulnerabilities discovered for the first time will be disclosed in accordance wi
 
 ## Appendix
 
-Lightweight Threat Model
-* [Threat Model](threat-model.md)
 
 Known Issues Over Time
 * The maintainers of Chaos Mesh have a record of all their issues on [this page](https://github.com/chaos-mesh/chaos-mesh/issues). Any issues including but not limited to security vulnerabilities discovered in the past are documented here. Some repetitive issues do arise, but these are related to the testing of pod killing in certain applications
@@ -195,7 +193,7 @@ Known Issues Over Time
 
 CII Best Practices (based on: [link](https://www.bestpractices.dev/en/criteria/0))
 * Chaos Mesh does not have a CII best practices badge. According to the criteria defined by the CII best practices handbook Chaos Mesh satisfies the required criteria in the Basics, Change Control, Reporting, and Quality guidelines. 
-* As for the Security field not much can be said, as it is not known if there is a security engineer on board to perform said secure developments as well as design against Man In The Middle (MITM) Attacks. Secondly, the good cryptographic practices clause also cannot be commented upon as the usage of the such is unknown. 
+* As for the Security field it is unknown if there is a security engineer on board to perform said secure developments as well as design against Man In The Middle (MITM) Attacks. Secondly, the good cryptographic practices clause also cannot be commented upon as the usage of the such is unknown. 
 
 Reference
 * Security Issue Resolution: https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md
