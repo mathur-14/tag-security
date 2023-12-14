@@ -33,22 +33,19 @@ The Self-assessment is the initial document for Chaos Mesh to begin thinking abo
 | Security Provider | No, Chaos Mesh offers various types of fault simulation and has an enormous capability to orchestrate fault scenarios.         |
 | Languages         | Go, Typescript, Javascript, Shell                                                                                              |
 | SBOM              | Chaos Mesh automatically generates SBOMs as assets with each release: https://github.com/chaos-mesh/chaos-mesh/releases/latest |
-|                   |                                                                                                                                |
-
 
 ### Security links
 
-| Doc                                                                 | URL                                                                                                                                                                                                     |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manage user permissions                                             | https://chaos-mesh.org/docs/manage-user-permissions/                                                                                                                                                    |
-| Configure namespace for Chaos Experiments                           | https://chaos-mesh.org/docs/configure-enabled-namespace/                                                                                                                                                |
-| GCP OAuth Authentication                                            | https://chaos-mesh.org/docs/gcp-authentication/                                                                                                                                                         |
-| Chaos Mesh manages permissions using the native RBAC feature in K8s | https://kubernetes.io/docs/reference/access-authn-authz/rbac/                                                                                                                                           |
-| Vulnerability Disclosure Policy                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#disclosure-policy                                                                                                                      |
-| Vulnerability Reporting Process                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#reporting-a-vulnerability                                                                                                              |
-| Default Configuration                                               | https://chaos-mesh.org/docs/configure-development-environment/#configuration-requirements     <br>    (Note: [Go version Vulnerability](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.5.2) ) |
-| Versions Supported by Security Updates                              | [Supported Versions](https://github.com/chaos-mesh/chaos-mesh/security#supported-versions             )   <br>                [All Versions](https://chaos-mesh.org/supported-releases/)                |
-|                                                                     |                                                                                                                                                                                                         |
+| Doc                                                                 | URL                                                                                                                                                                                                      |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Manage user permissions                                             | https://chaos-mesh.org/docs/manage-user-permissions/                                                                                                                                                     |
+| Configure namespace for Chaos Experiments                           | https://chaos-mesh.org/docs/configure-enabled-namespace/                                                                                                                                                 |
+| GCP OAuth Authentication                                            | https://chaos-mesh.org/docs/gcp-authentication/                                                                                                                                                          |
+| Chaos Mesh manages permissions using the native RBAC feature in K8s | https://kubernetes.io/docs/reference/access-authn-authz/rbac/                                                                                                                                            |
+| Vulnerability Disclosure Policy                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#disclosure-policy                                                                                                                       |
+| Vulnerability Reporting Process                                     | https://github.com/chaos-mesh/chaos-mesh/blob/master/SECURITY.md#reporting-a-vulnerability                                                                                                               |
+| Default Configuration                                               |  https://chaos-mesh.org/docs/configure-development-environment/#configuration-requirements     <br>    (Note: [Go version Vulnerability](https://github.com/chaos-mesh/chaos-mesh/releases/tag/v2.5.2) ) |
+| Versions Supported by Security Updates                              | [Supported Versions](https://github.com/chaos-mesh/chaos-mesh/security#supported-versions             )   <br>                [All Versions](https://chaos-mesh.org/supported-releases/)                 |
 
 ## Overview
 
@@ -71,12 +68,13 @@ Chaos engineering involves intentionally introducing controlled and measured dis
 ### Actions
 User input and observation:
 - User (Actor) Interaction: Initiating operations and interactions via the Chaos Dashboard or YAML configuration file.
-  - Chaos Resource Changes: Triggering changes in Chaos resources (e.g., creating or modifying NetworkChaos resources).
+  - Chaos Resource Changes: Triggering changes in Chaos resources (e.g., creating or modifying NetworkChaos resources). This is subject to authentication and authorization checks.
 
 Monitor resource changes, schedule Workflow, and carry out Chaos experiments:
 - Chaos Controller Manager (Actor): Accepting events from the Kubernetes API Server.
   - Workflow Scheduling: Scheduling and managing Chaos experiments and workflows.
   - Chaos Experiment Execution: Triggering specific fault injections, such as Pod failures, network issues, CPU/memory race simulations, etc.
+  - Tenant Isolation Checks: Ensuring the services are operating on the correct namespaces.
 
 Injection of specific node faults:
 - Chaos Daemon (Actor): Accepting commands from Chaos Controller Manager to execute fault injections.
@@ -87,6 +85,7 @@ Monitor resource changes, schedule Workflow, and carry out Chaos experiments:
 - Chaos Controller Manager (Actor): Accepting events from the Kubernetes API Server.
   - Workflow Scheduling: Scheduling and managing Chaos experiments and workflows.
   - Chaos Experiment Execution: Triggering specific fault injections, such as Pod failures, network issues, CPU/memory race simulations, etc.
+  - Tenant Isolation Checks: Ensuring the services are operating on the correct namespaces.
 
 Injection of specific node faults:
 - Chaos Daemon (Actor): Accepting commands from Chaos Controller Manager to execute fault injections.
@@ -110,7 +109,6 @@ This self-assessment is created by the Chaos Mesh team to perform an internal an
 This document serves to provide Chaos Mesh users with an initial understanding of Chaos Mesh's security, where to find existing security documentation, Chaos Mesh plans for security, and general overview of Chaos Mesh security practices, both for development of Chaos Mesh as well as security of Chaos Mesh.
 
 This document provides the CNCF TAG-Security with an initial understanding of Chaos Mesh to assist in a joint-assessment, necessary for projects under incubation.  Taken together, this document and the joint-assessment serve as a cornerstone for if and when Chaos Mesh seeks graduation and is preparing for a security audit.
-
 
 ## Security functions and features
 
@@ -186,6 +184,9 @@ Vulnerabilities discovered for the first time will be disclosed in accordance wi
 5. After the fixed code is merged into all supported versions, the vulnerability will be publicly posted in the GitHub Advisory Database.
 
 ## Appendix
+
+Lightweight Threat Model
+* [Threat Model](threat-model.md)
 
 Known Issues Over Time
 * The maintainers of Chaos Mesh have a record of all their issues on [this page](https://github.com/chaos-mesh/chaos-mesh/issues). Any issues including but not limited to security vulnerabilities discovered in the past are documented here. Some repetitive issues do arise, but these are related to the testing of pod killing in certain applications
